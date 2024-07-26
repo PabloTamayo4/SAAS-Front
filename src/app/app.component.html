@@ -1,0 +1,70 @@
+<!-- app.component.html -->
+<div class="container mx-auto flex">
+  <nav class="w-1/4 md:w-1/5 bg-gray-100 p-4 h-screen" *ngIf="isAuthenticated">
+    <ul class="space-y-2">
+      <li *ngIf="isAdmin">
+        <a class="block py-2 px-4 rounded-md transition-colors duration-300" 
+           [ngClass]="{ 'bg-blue-500 text-white': currentRoute === '/users', 'hover:bg-gray-200': currentRoute !== '/users' }" 
+           routerLink="/users" 
+           (click)="setActiveRoute('/users')">
+          Users
+        </a>
+      </li>
+      <li>
+        <a class="block py-2 px-4 rounded-md transition-colors duration-300" 
+           [ngClass]="{ 'bg-blue-500 text-white': currentRoute === '/courses', 'hover:bg-gray-200': currentRoute !== '/courses' }" 
+           routerLink="/courses" 
+           (click)="setActiveRoute('/courses')">
+          Courses
+        </a>
+      </li>
+      <li>
+        <a class="block py-2 px-4 rounded-md transition-colors duration-300" 
+           [ngClass]="{ 'bg-blue-500 text-white': currentRoute === '/subscriptions', 'hover:bg-gray-200': currentRoute !== '/subscriptions' }" 
+           routerLink="/subscriptions" 
+           (click)="setActiveRoute('/subscriptions')">
+          Subscriptions
+        </a>
+      </li>
+      <li *ngIf="isCreator">
+        <a class="block py-2 px-4 rounded-md transition-colors duration-300" 
+           [ngClass]="{ 'bg-blue-500 text-white': currentRoute === '/create-course', 'hover:bg-gray-200': currentRoute !== '/create-course' }" 
+           routerLink="/create-course" 
+           (click)="setActiveRoute('/create-course')">
+          Create Course
+        </a>
+      </li>
+      <li *ngIf="isAdmin">
+        <a class="block py-2 px-4 rounded-md transition-colors duration-300" 
+           [ngClass]="{ 'bg-blue-500 text-white': currentRoute === '/admin/approve-courses', 'hover:bg-gray-200': currentRoute !== '/admin/approve-courses' }" 
+           routerLink="/admin/approve-courses" 
+           (click)="setActiveRoute('/admin/approve-courses')">
+          Approve Courses
+        </a>
+      </li>
+      <li *ngIf="isAdmin">
+        <a class="block py-2 px-4 rounded-md transition-colors duration-300" 
+           [ngClass]="{ 'bg-blue-500 text-white': currentRoute === '/rdf', 'hover:bg-gray-200': currentRoute !== '/rdf' }" 
+           routerLink="/rdf" 
+           (click)="setActiveRoute('/rdf')">
+          RDF
+        </a>
+      </li>
+      <li>
+        <a class="block py-2 px-4 rounded-md transition-colors duration-300" 
+           [ngClass]="{ 'bg-blue-500 text-white': currentRoute === '/settings', 'hover:bg-gray-200': currentRoute !== '/settings' }" 
+           routerLink="/settings" 
+           (click)="setActiveRoute('/settings')">
+          Settings
+        </a>
+      </li>
+      <li>
+        <button class="w-full text-left py-2 px-4 rounded-md transition-colors duration-300 bg-red-500 text-white hover:bg-red-600" (click)="logout()">Logout</button>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="w-3/4 md:w-4/5 p-4">
+    <router-outlet></router-outlet>
+  </main>
+</div>

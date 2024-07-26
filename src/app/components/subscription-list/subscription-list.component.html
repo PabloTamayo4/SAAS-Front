@@ -1,0 +1,13 @@
+<div class="subscription-list grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div *ngFor="let subscription of subscriptions" class="subscription-card bg-white p-4 rounded-lg shadow-md">
+    <div class="card-header bg-blue-500 text-white p-2 rounded-t-lg">
+      <h2 class="text-lg font-semibold">{{ subscription.courseName }}</h2>
+    </div>
+    <div class="card-body p-4">
+      <p><strong>Subscribed by:</strong> {{ subscription.consumerName }}</p>
+      <p><strong>Subscribed on:</strong> {{ subscription.subscriptionDate | date: 'medium' }}</p>
+      <p><strong>Creator:</strong> {{ subscription.creatorName }}</p>
+      <button *ngIf="!isCreator" class="mt-2 bg-red-500 text-white py-1 px-4 rounded" (click)="deleteSubscription(subscription.id)">Unsubscribe</button>
+    </div>
+  </div>
+</div>

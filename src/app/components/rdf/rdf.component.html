@@ -1,0 +1,15 @@
+<div class="container mx-auto mt-12">
+    <h1 class="text-3xl font-bold text-center mb-8">Datos RDF Combinados</h1>
+    <div *ngIf="errorMessage" class="bg-red-500 text-white p-4 rounded-lg shadow-lg mb-4">
+      {{ errorMessage }}
+    </div>
+    <div *ngIf="rdfData" class="bg-white shadow-md rounded-lg p-6">
+      <pre>{{ rdfData }}</pre>
+      <div class="text-right mt-4">
+        <button (click)="exportRDF()" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+          Exportar RDF
+        </button>
+      </div>
+    </div>
+  </div>
+  

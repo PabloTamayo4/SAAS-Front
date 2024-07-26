@@ -1,0 +1,43 @@
+<div class="course-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+  <div *ngFor="let course of courses" class="bg-white shadow-md rounded-lg overflow-hidden">
+    <img [src]="course.imageUrl" alt="{{ course.title }}" class="w-full h-48 object-cover">
+    <div class="p-4">
+      <h2 class="text-xl font-semibold">{{ course.title }}</h2>
+      <p class="text-gray-600">Creado por: {{ course.creatorName }}</p>
+      <p class="mt-2">{{ course.description }}</p>
+      <div class="flex items-center mt-2">
+        <span [ngClass]="{
+          'bg-green-500': course.status === 'ACTIVE',
+          'bg-red-500': course.status === 'INACTIVE',
+          'bg-blue-500': course.status === 'IN_CONSTRUCTION'
+        }" class="inline-block w-3 h-3 rounded-full mr-2"></span>
+        <p>{{ course.status }}</p>
+      </div>
+      <div class="mt-4 flex space-x-2">
+        <button 
+          *ngIf="currentUser?.userType !== 'CREATOR'" 
+          [disabled]="isSubscribed(course.id ?? 0)" 
+          class="py-2 px-4 rounded hover:bg-blue-600"
+          [ngClass]="{
+            'bg-blue-500 text-white': !isSubscribed(course.id ?? 0),
+            'bg-gray-500 text-gray-200': isSubscribed(course.id ?? 0)
+          }" 
+          (click)="course.id !== undefined ? subscribe(course.id) : null">
+          {{ isSubscribed(course.id ?? 0) ? 'Suscrito' : 'Suscribirse' }}
+        </button>
+        <button 
+          *ngIf="currentUser?.userType === 'CREATOR' || currentUser?.userType === 'ADMIN'"
+          class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+          (click)="course.id !== undefined ? deleteCourse(course.id) : null">
+          Eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Section -->
+  <div *ngIf="errorMessage" class="fixed bottom-4 right-4 bg-red-500 text-white p-4 rounded-lg shadow-lg">
+    {{ errorMessage }}
+    <button class="ml-4" (click)="errorMessage = null">&times;</button>
+  </div>
+</div>

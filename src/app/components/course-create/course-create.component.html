@@ -1,0 +1,32 @@
+<div class="container mx-auto mt-12">
+  <h1 class="text-3xl font-bold text-center mb-8">Create Course</h1>
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()" class="space-y-6">
+    <div *ngIf="errorMessage" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+      <span class="block sm:inline">{{ errorMessage }}</span>
+    </div>
+    <div class="form-group">
+      <label for="title" class="block text-gray-700 font-semibold mb-2">Title</label>
+      <input type="text" id="title" formControlName="title" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+    <div class="form-group">
+      <label for="description" class="block text-gray-700 font-semibold mb-2">Description</label>
+      <textarea id="description" formControlName="description" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="status" class="block text-gray-700 font-semibold mb-2">Status</label>
+      <select id="status" formControlName="status" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="ACTIVE">Active</option>
+        <option value="IN_CONSTRUCTION">In Construction</option>
+        <option value="INACTIVE">Inactive</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="imageUrl" class="block text-gray-700 font-semibold mb-2">Image</label>
+      <input type="file" id="imageUrl" (change)="onFileSelected($event)" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    </div>
+    <div class="flex justify-between">
+      <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded-lg" (click)="onCancel()">Cancel</button>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg" [disabled]="!courseForm.valid">Save</button>
+    </div>
+  </form>
+</div>

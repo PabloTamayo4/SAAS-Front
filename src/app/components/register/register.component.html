@@ -1,0 +1,37 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold text-center">Registrar</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="space-y-4">
+      <div>
+        <label for="firstName" class="block text-sm font-medium text-gray-700">Primer Nombre</label>
+        <input type="text" id="firstName" formControlName="firstName" required
+               class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+      <div>
+        <label for="lastName" class="block text-sm font-medium text-gray-700">Apellido</label>
+        <input type="text" id="lastName" formControlName="lastName" required
+               class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input type="email" id="email" formControlName="email" required
+               class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input type="password" id="password" formControlName="password" required
+               class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+      </div>
+      <div>
+        <label for="userType" class="block text-sm font-medium text-gray-700">Tipo de Usuario</label>
+        <select id="userType" formControlName="userType" required
+                class="block w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <option value="CREATOR">Creator</option>
+          <option value="CONSUMER">Consumer</option>
+        </select>
+      </div>
+      <button type="submit" class="w-full py-2 text-white bg-indigo-600 rounded-md hover:bg-indigo-700">Registrar</button>
+    </form>
+    <p class="mt-4 text-center text-sm">Ya tienes una cuenta? <a (click)="goToLogin()" class="text-indigo-600 hover:text-indigo-500">Inicia Sesión</a></p>
+  </div>
+</div>
